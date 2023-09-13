@@ -793,7 +793,7 @@ class SakayDB:
                 return result_dict
             else:
                 return {}
-        if isinstance(stat, str):    
+        if isinstance(stat, str):
             stat = stat.strip()
         else:
             raise SakayDBError
