@@ -1,3 +1,14 @@
+"""
+SakayDB
+A module for managing ride-hailing data.
+A final project for Programming for Data Science
+Author:
+    Joshua Victor San Juan
+    Jeremiah Dominic Soliman
+    MSDS 2024
+"""
+
+
 import numpy as np
 import pandas as pd
 import os
