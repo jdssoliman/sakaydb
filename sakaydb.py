@@ -472,21 +472,15 @@ class SakayDB:
                     if start is not None and end is None:
                         if isinstance(start, str):
                             start = start.strip()
-                        else:
-                            raise SakayDBError
                         df_trips = df_trips[df_trips[key] >= start]
                     elif start is None and end is not None:
                         if isinstance(end, str):
                             end = end.strip()
-                        else:
-                            raise SakayDBError
                         df_trips = df_trips[df_trips[key] <= end]
                     elif start is not None and end is not None:
                         if isinstance(start, str) and isinstance(end, str):
                             start = start.strip()
                             end = end.strip()
-                        else:
-                            raise SakayDBError
                         df_trips = df_trips[
                             (df_trips[key] >= start) & (df_trips[key] <= end)
                         ]
