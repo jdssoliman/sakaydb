@@ -5,25 +5,17 @@ import matplotlib.pyplot as plt
 
 
 class SakayDBError(ValueError):
-    """Exception raised for errors in SakayDB.
-
+    """
+    Custom exception for SakayDB errors.
+    
     Parameters
     ----------
-    error_prompt : str
-        Explanation of the error.
-
-    Raises
-    ------
-    SakayDBError
-        When a specific SakayDB-related error condition is encountered.
-
-    Examples
-    --------
-    >>> raise SakayDBError("An unexpected error occurred.")
-    SakayDBError: An unexpected error occurred.
+    error_prompt : str, optional
+        Description of the error. Default is None.
     """
 
     def __init__(self, error_prompt=None):
+        """Initialize with an optional error description."""
         super().__init__(error_prompt)
 
 
@@ -297,8 +289,7 @@ class SakayDB:
         return trips["trip_id"].iloc[-1]
 
     def add_trips(self, trips):
-        """
-        Add multiple trips to the database.
+        """Add multiple trips to the database.
 
         Parameters
         ----------
@@ -343,8 +334,7 @@ class SakayDB:
         return trip_ids
 
     def delete_trip(self, trip_id):
-        """
-        Delete a trip from the database based on the given trip ID.
+        """Delete a trip from the database based on the given trip ID.
 
         Parameters
         ----------
@@ -377,8 +367,7 @@ class SakayDB:
         df.to_csv(trip_file_path, index=False)
 
     def search_trips(self, **kwargs):
-        """
-        Search for trips in the SakayDB database based on various criteria.
+        """Search for trips in the SakayDB database based on various criteria.
 
         Parameters
         ----------
@@ -658,8 +647,7 @@ class SakayDB:
                 return False, {}
 
         def trip_stat(is_valid, df_trips):
-            """
-            Generate trip statistics based on the given DataFrame.
+            """Generate trip statistics based on the given DataFrame.
 
             Parameters
             ----------
@@ -688,8 +676,7 @@ class SakayDB:
                 return {}
 
         def passenger_stat(is_valid, df_trips):
-            """
-            Generate passenger statistics based on the given DataFrame.
+            """Generate passenger statistics based on the given DataFrame.
 
             Parameters
             ----------
@@ -733,8 +720,7 @@ class SakayDB:
                 return {}
 
         def driver_stat(is_valid, df_trips):
-            """
-            Generate driver statistics based on the given DataFrame.
+            """Generate driver statistics based on the given DataFrame.
 
             Parameters
             ----------
@@ -806,8 +792,7 @@ class SakayDB:
             raise SakayDBError
 
     def plot_statistics(self, stat):
-        """
-        Generate and display plots for various types of statistics.
+        """Generate and display plots for various types of statistics.
 
         Parameters
         ----------
@@ -963,8 +948,7 @@ class SakayDB:
             raise SakayDBError
 
     def generate_odmatrix(self, date_range=None):
-        """
-        Generate an Origin-Destination (OD) matrix based on trip data.
+        """Generate an Origin-Destination (OD) matrix based on trip data.
 
         Parameters
         ----------
