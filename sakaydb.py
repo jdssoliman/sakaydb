@@ -854,7 +854,6 @@ class SakayDB:
                 ylabel="Ave Trips",
                 title="Average trips per day"
             )
-            plt.show()
 
             return ax
 
@@ -901,7 +900,6 @@ class SakayDB:
             # Plotting
             ax = df.plot(kind="line", figsize=(12, 8), marker="o")
             ax.set(xlabel="Day of week", ylabel="Ave Trips")
-            plt.show()
 
             return ax
 
@@ -958,7 +956,6 @@ class SakayDB:
                            y=day, x="driver_name", legend=True)
                 )
                 ax[i].set(ylabel=None, xlabel="Ave Trips")
-            plt.show()
 
             return fig
 
