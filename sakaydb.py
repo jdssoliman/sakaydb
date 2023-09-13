@@ -8,7 +8,6 @@ Author:
     MSDS 2024
 """
 
-
 import numpy as np
 import pandas as pd
 import os
@@ -471,10 +470,23 @@ class SakayDB:
                     start, end = value
 
                     if start is not None and end is None:
+                        if isinstance(start, str):
+                            start = start.strip()
+                        else:
+                            raise SakayDBError
                         df_trips = df_trips[df_trips[key] >= start]
                     elif start is None and end is not None:
+                        if isinstance(end, str):
+                            end = end.strip()
+                        else:
+                            raise SakayDBError
                         df_trips = df_trips[df_trips[key] <= end]
                     elif start is not None and end is not None:
+                        if isinstance(start, str) and isinstance(end, str):
+                            start = start.strip()
+                            end = end.strip()
+                        else:
+                            raise SakayDBError
                         df_trips = df_trips[
                             (df_trips[key] >= start) & (df_trips[key] <= end)
                         ]
@@ -781,6 +793,10 @@ class SakayDB:
                 return result_dict
             else:
                 return {}
+        if isinstance(stat, str):    
+            stat = stat.strip()
+        else:
+            raise SakayDBError
 
         is_valid_data, trip_data = load_trip_data()
 
@@ -822,6 +838,11 @@ class SakayDB:
             If the required CSV files do not exist or if an invalid `stat`
             argument is provided.
         """
+        if isinstance(stat, str):
+            stat = stat.strip()
+        else:
+            raise SakayDBError
+
         if stat == "trip":
             # Define file path and check existence
             trip_path = os.path.join(self.data_dir, "trips.csv")
@@ -1018,11 +1039,19 @@ class SakayDB:
                 start, end = date_range
                 datetime_format = "%H:%M:%S,%d-%m-%Y"
 
-                if start is not None:
+                if start:
+                    if isinstance(start, str):
+                        start = start.strip()
+                    else:
+                        raise SakayDBError
                     start = pd.to_datetime(start, format=datetime_format)
                     df_trips = df_trips[df_trips["pickup_datetime"] >= start]
 
-                if end is not None:
+                if end:
+                    if isinstance(end, str):
+                        end = end.strip()
+                    else:
+                        raise SakayDBError
                     end = pd.to_datetime(end, format=datetime_format)
                     df_trips = df_trips[df_trips["pickup_datetime"] <= end]
 
