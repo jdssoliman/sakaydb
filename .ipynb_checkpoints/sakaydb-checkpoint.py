@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 class SakayDBError(ValueError):
     """
     Custom exception for SakayDB errors.
-    
+
     Parameters
     ----------
     error_prompt : str, optional
